@@ -1,8 +1,10 @@
 import express from 'express';
-import { pool } from './db';
+import { pool } from './infra/db';
+import { orderRouter } from './presentation/handlers/order.handler';
 
 const app = express();
 app.use(express.json());
+app.use('/orders', orderRouter);
 
 app.get('/health', async (_req, res) => {
   try {
